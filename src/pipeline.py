@@ -28,3 +28,4 @@ def run_pipeline(image_path: str) -> dict:
     validate_diagram_json(diagram_json)
     return diagram_json
 
+#dfghj
