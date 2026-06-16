@@ -203,13 +203,13 @@ run_detector(
 
 ---
 
-### 📥 Input
+###  Input
 
 * Single image OR folder of images
 
 ---
 
-### 📤 Output
+###  Output
 
 For each image:
 
@@ -227,7 +227,7 @@ data/output/
 
 
 
-### 📦 Dependencies
+###  Dependencies
 
 Add to `requirements.txt`:
 
