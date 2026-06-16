@@ -5,7 +5,7 @@ from datetime import datetime
 from ultralytics import YOLO
 
 # ==========================================
-# 📌 1. CONFIGURATION PARAMETERS
+# 1. CONFIGURATION PARAMETERS
 # ==========================================
 # Slicing Parameters
 PATCH_SIZE = 832     
@@ -24,7 +24,7 @@ CLASSES = {
 }
 
 # ==========================================
-# 📌 2. MATH & NMS HELPER FUNCTIONS
+#  2. MATH & NMS HELPER FUNCTIONS
 # ==========================================
 def calculate_iou(boxA, boxB):
     """Calculates Intersection over Union (IoU) to find overlapping duplicates."""
@@ -63,7 +63,7 @@ def global_nms(predictions, iou_threshold):
     return kept_boxes
 
 # ==========================================
-# 📌 3. CORE PROCESSING FUNCTION
+#  3. CORE PROCESSING FUNCTION
 # ==========================================
 def process_single_diagram(image_path, model, output_dir):
     """Processes a single image and saves the JSON and Visualized JPG to output_dir."""
@@ -136,7 +136,7 @@ def process_single_diagram(image_path, model, output_dir):
                 })
 
     # ==========================================
-    # 📌 4. CLEAN UP & JSON GENERATION
+    #  4. CLEAN UP & JSON GENERATION
     # ==========================================
     final_predictions = global_nms(all_global_predictions, IOU_THRESH)
 
