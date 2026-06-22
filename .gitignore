@@ -6,4 +6,4 @@ build/
 dist/
 *.spec
 data/output/*.json
-
+docs
