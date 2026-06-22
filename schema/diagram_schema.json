@@ -57,12 +57,31 @@
     },
     "block": {
       "type": "object",
-      "required": ["id", "type", "label", "bbox", "confidence"],
+      "required": ["id", "type", "label", "bbox", "derived_coordinates", "confidence"],
       "properties": {
         "id": { "type": "string" },
         "type": { "type": "string" },
         "label": { "type": "string" },
         "bbox": { "$ref": "#/$defs/bbox" },
+
+        "derived_coordinates": {
+          "type": "object",
+          "required": ["center", "vertices"],
+          "properties": {
+            "center": { "$ref": "#/$defs/point" },
+            "vertices": {
+              "type": "object",
+              "required": ["top_left", "top_right", "bottom_right", "bottom_left"],
+              "properties": {
+                "top_left": { "$ref": "#/$defs/point" },
+                "top_right": { "$ref": "#/$defs/point" },
+                "bottom_right": { "$ref": "#/$defs/point" },
+                "bottom_left": { "$ref": "#/$defs/point" }
+              }
+            }
+          }
+        },
+
         "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
       }
     },
