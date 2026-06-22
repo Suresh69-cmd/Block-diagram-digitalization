@@ -134,3 +134,114 @@ control_diagram_digitizer/
   tests/
     test_pipeline.py
 ```
+
+
+##  Object Detection Module (YOLO)
+
+This module is responsible for detecting components (blocks) in control/industrial diagrams using a YOLO-based model.
+
+---
+
+###  File Location
+
+```text
+src/detectors/object_detector.py
+```
+
+---
+
+###  Features
+
+* Sliding window detection for large diagrams
+* Global Non-Maximum Suppression (NMS) to remove duplicates
+* Edge filtering to discard partial detections
+* Class filtering (ignores unwanted classes like connectors)
+* Generates structured JSON output
+* Saves visualized detection image
+
+---
+
+###  Configuration Parameters
+
+```python
+PATCH_SIZE = 832      # Size of each detection patch
+STRIDE = 600          # Step size for sliding window
+CONF_THRESH = 0.6     # Confidence threshold
+IOU_THRESH = 0.50     # NMS threshold
+```
+
+---
+
+###  Supported Classes
+
+```python
+CLASSES = {
+    0: "valve", 
+    1: "connector", 
+    2: "instrumentation", 
+    3: "tank", 
+    4: "arrow", 
+    5: "inlet/outlet"
+}
+```
+
+ Note: `"connector"` class is ignored in final output.
+
+---
+
+###  How to Use
+
+```python
+from src.detectors.object_detector import run_detector
+
+run_detector(
+    input_source="data/sample",     # image or folder
+    output_dir="data/output",       # output folder
+    weights_path="models/best.pt"   # YOLO weights
+)
+```
+
+---
+
+###  Input
+
+* Single image OR folder of images
+
+---
+
+###  Output
+
+For each image:
+
+```text
+data/output/
+  ├── <image_name>_output.json
+  ├── <image_name>_visualized.jpg
+```
+
+---
+
+
+
+---
+
+
+
+###  Dependencies
+
+Add to `requirements.txt`:
+
+```text
+ultralytics
+opencv-python
+```
+
+---
+
+###  Exclusions
+
+* Model weights (`.pt`) are NOT included in repo
+* Output files are generated dynamically (not stored in repo)
+
+---
+
